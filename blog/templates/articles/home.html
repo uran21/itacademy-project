@@ -1,0 +1,44 @@
+<div>
+	<a href="{% url 'blog:add' %}">Добавить Пост</a>
+	<a href="{% url 'blog:adtheme' %}">Добавить Тему</a>
+	
+</div>
+
+
+<div>
+<form action="{%url 'blog:search_result'%}">
+				<select name="find">
+					<option value="all">all</option>
+					<option value="ex">exact</option>
+					<option value="st">starts with</option>
+					<option value="en">ends with</option>
+			</select>
+				
+				<input type="text" name="q" placeholder="Search String" value="{{q}}">
+				<button type="submit">SEARCH</button>
+				<label for="">
+				<input type="checkbox" name="content" value="1">
+					search in content
+				</label>
+</form>
+
+	{% for post in posts %}
+		<div>
+			<h1>
+				<a href="/blog/theme-{{post.theme.id}}/">{{post.theme}}</a>
+			</h1>
+			<img src="{{ post.theme.image.url }}" height="40px">
+			<h3>
+				---->><a href="/blog/post-{{post.id}}/">{{post.title}}</a>
+			</h3>
+			
+			<!-- <p> -->
+				<!-- {{post.content}} -->
+			<!-- </p> -->
+			<!-- <p> -->
+				<!-- {{post.add_time}} -->
+			<!-- </p> -->
+			<!-- <div>{{post.theme}}</div> -->
+		</div>
+	{%endfor%}
+</div>
